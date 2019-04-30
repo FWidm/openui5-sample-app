@@ -8,7 +8,13 @@ builder:
     - name: demoTask
       afterTask: uglify
       configuration:
-        color: blue
+        pattern: '@@baseUrl'
+        replace: 'http://base.com/url'
+    - name: demoTask2
+      afterTask: demoTask
+      configuration:
+        pattern: '@@campusHome'
+        replace: 'http://home.com/url'
 ---
 # Task extension as part of your project
 specVersion: "1.0"
@@ -16,5 +22,14 @@ kind: extension
 type: task
 metadata:
   name: demoTask
+task:
+  path: tasks/demoTask.js
+---
+# Task extension as part of your project
+specVersion: "1.0"
+kind: extension
+type: task
+metadata:
+  name: demoTask2
 task:
   path: tasks/demoTask.js

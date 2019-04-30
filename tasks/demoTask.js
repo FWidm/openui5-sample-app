@@ -11,31 +11,26 @@ const stringReplacer = require('@ui5/builder/lib/processors/stringReplacer');
  * @returns {Promise<undefined>} Promise resolving with <code>undefined</code> once data has been written
  */
 module.exports = async function ({workspace, dependencies, options}) {
-	console.log(options);
 	/**
 	 * Find all xml files that have view or fragment in their names
 	 * @type {string}
 	 */
-	const pattern = '/**/*.{view,fragment}.xml';
+	const filePattern = '/**/*.{view,fragment}.xml';
 	/**
-	 * replace the baseurl pattern with this string
+	 * replace the baseurl filePattern with this string
 	 * @type {string}
 	 */
-	const baseUrl = 'http://base.com/url';
 
-	workspace.byGlob(pattern)
-		.then((allResources) => {
-			console.log(allResources);
-			// replace(allResources,{'pattern':'xy'})
-		});
+	const replacement = options.configuration;
 
-	return workspace.byGlob(pattern)
+	return workspace.byGlob(filePattern)
 		.then((allResources) => {
+
 			return stringReplacer({
 				resources: allResources,
 				options: {
-					pattern: "@@baseUrl",
-					replacement: baseUrl
+					pattern: replacement['pattern'],
+					replacement: replacement['replace']
 				}
 			});
 		})
@@ -45,4 +40,3 @@ module.exports = async function ({workspace, dependencies, options}) {
 			}));
 		});
 };
-
