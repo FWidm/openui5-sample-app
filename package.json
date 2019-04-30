@@ -10,7 +10,7 @@
     "karma-ci": "karma start karma-ci.conf.js",
     "watch": "npm run karma",
     "test": "npm run lint && rimraf coverage && npm run karma-ci",
-    "build": "rimraf dist && ui5 build --a"
+    "build": "rimraf dist && ui5 tasks --a"
   },
   "dependencies": {
     "@openui5/sap.m": "^1.60.0",

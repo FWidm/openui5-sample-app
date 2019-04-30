@@ -1,4 +1,20 @@
-specVersion: '1.0'
+specVersion: "1.0"
+kind: project
+type: application
 metadata:
   name: openui5-sample-app
-type: application
+builder:
+  customTasks:
+    - name: demoTask
+      afterTask: uglify
+      configuration:
+        color: blue
+---
+# Task extension as part of your project
+specVersion: "1.0"
+kind: extension
+type: task
+metadata:
+  name: demoTask
+task:
+  path: tasks/demoTask.js
